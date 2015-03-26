@@ -3,7 +3,9 @@ package org.askerov.dynamicgrid;
 import android.widget.BaseAdapter;
 
 import java.util.HashMap;
+import java.util.IdentityHashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Author: alex askerov
@@ -21,7 +23,8 @@ public abstract class AbstractDynamicGridAdapter extends BaseAdapter implements 
 
     private int nextStableId = 0;
 
-    private HashMap<Object, Integer> mIdMap = new HashMap<Object, Integer>();
+    private Map<Object, Integer> mIdMap = new IdentityHashMap<Object, Integer>();
+
 
     /**
      * Adapter must have stable id
