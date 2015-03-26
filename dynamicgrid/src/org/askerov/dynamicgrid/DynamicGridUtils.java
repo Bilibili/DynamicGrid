@@ -18,9 +18,9 @@ public class DynamicGridUtils {
      * @param indexFrom
      * @param indexTwo
      */
-    public static void reorder(List list, int indexFrom, int indexTwo) {
-        Object obj = list.remove(indexFrom);
-        list.add(indexTwo, obj);
+    public static <T> void reorder(List<T> list, int indexFrom, int indexTwo) {
+        T item = list.remove(indexFrom);
+        list.add(indexTwo, item);
     }
 
     /**
@@ -30,11 +30,11 @@ public class DynamicGridUtils {
      * @param firstIndex The position of the first item in the list.
      * @param secondIndex The position of the second item in the list.
      */
-    public static void swap(List list, int firstIndex, int secondIndex) {
-        Object firstObject = list.get(firstIndex);
-        Object secondObject = list.get(secondIndex);
-        list.set(firstIndex, secondObject);
-        list.set(secondIndex, firstObject);
+    public static <T> void swap(List<T> list, int firstIndex, int secondIndex) {
+        T firstItem = list.get(firstIndex);
+        T secondItem = list.get(secondIndex);
+        list.set(firstIndex, secondItem);
+        list.set(secondIndex, firstItem);
     }
 
     public static float getViewX(View view) {

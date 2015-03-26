@@ -22,6 +22,9 @@ public class GridActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_grid);
         gridView = (DynamicGridView) findViewById(R.id.dynamic_grid);
+//        disable wobble in edit mode if needed
+//        gridView.setWobbleInEditMode(false);
+        
         gridView.setAdapter(new CheeseDynamicAdapter(this,
                 new ArrayList<String>(Arrays.asList(Cheeses.sCheeseStrings)),
                 getResources().getInteger(R.integer.column_count)));

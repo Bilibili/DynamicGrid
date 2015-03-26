@@ -18,12 +18,12 @@ import java.util.Map;
  * Abstract adapter for {@link org.askerov.dynamicgrid.DynamicGridView} with sable items id;
  */
 
-public abstract class AbstractDynamicGridAdapter extends BaseAdapter implements DynamicGridAdapterInterface {
+public abstract class AbstractDynamicGridAdapter<T> extends BaseAdapter implements DynamicGridAdapterInterface {
     public static final int INVALID_ID = -1;
 
     private int nextStableId = 0;
 
-    private Map<Object, Integer> mIdMap = new IdentityHashMap<Object, Integer>();
+    private Map<T, Integer> mIdMap = new IdentityHashMap<T, Integer>();
 
 
     /**
@@ -41,7 +41,7 @@ public abstract class AbstractDynamicGridAdapter extends BaseAdapter implements 
      *
      * @param item
      */
-    protected void addStableId(Object item) {
+    protected void addStableId(T item) {
         mIdMap.put(item, nextStableId++);
     }
 
@@ -50,11 +50,14 @@ public abstract class AbstractDynamicGridAdapter extends BaseAdapter implements 
      *
      * @param items
      */
-    protected void addAllStableId(List<?> items) {
-        for (Object item : items) {
+    protected void addAllStableId(List<? extends T> items) {
+        for (T item : items) {
             addStableId(item);
         }
     }
+
+    @Override
+    public abstract T getItem(int position);
 
     /**
      * get id for position
@@ -67,8 +70,7 @@ public abstract class AbstractDynamicGridAdapter extends BaseAdapter implements 
         if (position < 0 || position >= mIdMap.size()) {
             return INVALID_ID;
         }
-        Object item = getItem(position);
-        return mIdMap.get(item);
+        return mIdMap.get(getItem(position));
     }
 
     /**
@@ -84,7 +86,7 @@ public abstract class AbstractDynamicGridAdapter extends BaseAdapter implements 
      *
      * @param item
      */
-    protected void removeStableID(Object item) {
+    protected void removeStableID(T item) {
         mIdMap.remove(item);
     }
 

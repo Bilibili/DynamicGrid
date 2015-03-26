@@ -21,8 +21,8 @@ import java.util.List;
  * Date: 9/7/13
  * Time: 10:56 PM
  */
-public class CheeseDynamicAdapter extends BaseDynamicGridAdapter {
-    public CheeseDynamicAdapter(Context context, List<?> items, int columnCount) {
+public class CheeseDynamicAdapter extends BaseDynamicGridAdapter<CharSequence> {
+    public CheeseDynamicAdapter(Context context, List<? extends CharSequence> items, int columnCount) {
         super(context, items, columnCount);
     }
 
@@ -30,7 +30,7 @@ public class CheeseDynamicAdapter extends BaseDynamicGridAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         CheeseViewHolder holder;
         if (convertView == null) {
-            convertView = LayoutInflater.from(getContext()).inflate(R.layout.item_grid, null);
+            convertView = LayoutInflater.from(getContext()).inflate(R.layout.item_grid, parent, false);
             holder = new CheeseViewHolder(convertView);
             convertView.setTag(holder);
         } else {
